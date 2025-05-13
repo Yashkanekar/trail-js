@@ -1,32 +1,47 @@
 {
-  "name": "userguide",
-  "private": true,
-  "version": "0.0.0",
+  "name": "trail-js",
+  "version": "1.0.0",
+  "description": "A React walkthrough library",
+  "author": "Your Name",
+  "license": "MIT",
   "type": "module",
-  "scripts": {
-    "dev": "vite",
-    "build": "tsc -b && vite build",
-    "lint": "eslint .",
-    "preview": "vite preview"
-  },
-  "main": "./dist/index.js",
-  "types": "./dist/types/index.d.ts",
+  "main": "./dist/index.cjs.js",
+  "module": "./dist/index.esm.js",
+  "types": "./dist/index.d.ts",
   "exports": {
     ".": {
-      "import": "./dist/index.js",
-      "types": "./dist/types/index.d.ts"
+      "import": "./dist/index.esm.js",
+      "require": "./dist/index.cjs.js",
+      "types": "./dist/index.d.ts"
     }
   },
+  "scripts": {
+    "dev": "vite",
+    "build:example": "vite build",
+    "build:lib": "cross-env BUILD=lib vite build",
+    "lint": "eslint .",
+    "preview": "vite preview",
+    "build:types": "tsc"
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "private": false,
+  "peerDependencies": {
+    "react": ">=17.0.0",
+    "react-dom": ">=17.0.0"
+  },
   "dependencies": {
-    "clsx": "^2.1.1",
-    "react": "^19.1.0",
-    "react-dom": "^19.1.0"
+    "clsx": "^2.1.1"
   },
   "devDependencies": {
     "@eslint/js": "^9.25.0",
+    "@types/node": "^22.15.17",
     "@types/react": "^19.1.2",
     "@types/react-dom": "^19.1.2",
     "@vitejs/plugin-react": "^4.4.1",
+    "cross-env": "^7.0.3",
     "eslint": "^9.25.0",
     "eslint-plugin-react-hooks": "^5.2.0",
     "eslint-plugin-react-refresh": "^0.4.19",
