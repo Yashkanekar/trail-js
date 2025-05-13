@@ -18,7 +18,7 @@
   "scripts": {
     "dev": "vite",
     "build:example": "vite build",
-    "build:lib": "cross-env BUILD=lib vite build",
+    "build:lib": "tsc --project tsconfig.build.json && cross-env BUILD=lib vite build",
     "lint": "eslint .",
     "preview": "vite preview",
     "build:types": "tsc"
