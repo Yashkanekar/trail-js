@@ -3,7 +3,7 @@ import {
   WalkthroughProvider,
   Walkthrough,
   useWalkthrough,
-  WalkthroughStep,
+  type WalkthroughStep,
 } from "../src";
 
 const steps: WalkthroughStep[] = [
