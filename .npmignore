@@ -1,0 +1,7 @@
+example/
+public/
+*.test.ts
+*.test.tsx
+README-dev.md
+vite.config.ts
+tsconfig.node.json
