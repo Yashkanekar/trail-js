@@ -4,6 +4,7 @@ import React, {
   useState,
   type ReactNode,
 } from "react";
+import toast from "react-hot-toast";
 import type { WalkthroughStep } from "../types";
 
 type WalkthroughContextType = {
@@ -47,8 +48,13 @@ export const WalkthroughProvider = ({
     }
 
     if (currentStep.canGoNext) {
-      const allowed = await currentStep.canGoNext();
-      if (!allowed) return;
+      const allowed = await currentStep.canGoNext.validate();
+      if (!allowed) {
+        toast.error(
+          currentStep.canGoNext.errorString || "Complete this step to continue!"
+        );
+        return;
+      }
     }
 
     if (currentStepIndex < steps.length - 1) {

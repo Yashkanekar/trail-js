@@ -1,4 +1,3 @@
-import React from "react";
 import {
   WalkthroughProvider,
   Walkthrough,
@@ -9,18 +8,44 @@ import {
 const steps: WalkthroughStep[] = [
   {
     selector: "#step-one",
-    content: "This is the first step. It highlights this button.",
+    content: "Click here to start the walkthrough",
     placement: "bottom",
   },
   {
     selector: "#step-two",
-    content: "This is the second step. Look here!",
-    placement: "right",
+    content: "Enter your name here. This input is required before proceeding.",
+    placement: "top",
+    canGoNext: {
+      validate: () => {
+        const val = document.getElementById("step-two")?.value;
+        if (!val) {
+          // toast.error("Name is required to continue!");
+          return false;
+        }
+        return true;
+      },
+      errorString: "Name is required to continue!",
+    },
   },
   {
     selector: "#step-three",
-    content: "This is the last step. Done!",
-    placement: "top",
+    content: "Click this button to submit",
+    placement: "right",
+    onEnter: () => {
+      console.log("We're now highlighting the submit button!");
+    },
+  },
+  {
+    selector: "h1",
+    content: "This is the main heading.",
+    placement: "bottom",
+    customNavigation: ({ back, next, skip }) => (
+      <div>
+        <button onClick={back}>👈 Back</button>
+        <button onClick={next}>👉 Continue</button>
+        <button onClick={skip}>❌ Skip</button>
+      </div>
+    ),
   },
 ];
 const Controls = () => {

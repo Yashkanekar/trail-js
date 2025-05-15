@@ -5,12 +5,15 @@ export type Placement = "top" | "bottom" | "left" | "right" | "auto";
 export interface WalkthroughStep {
   selector: string;
   content: string;
-  placement?: Placement;
+  placement?: "top" | "bottom" | "left" | "right" | "auto";
   triggerEvent?: string;
   onEnter?: () => void;
   onExit?: () => void;
   customNavigation?: (controls: WalkthroughControls) => ReactNode;
-  canGoNext?: () => boolean | Promise<boolean>;
+  canGoNext?: {
+    validate: () => boolean | Promise<boolean>;
+    errorString?: string;
+  };
   beforeNext?: () => void | Promise<void>;
 }
 
