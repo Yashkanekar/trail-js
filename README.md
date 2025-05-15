@@ -36,7 +36,9 @@ A flexible, minimalistic walkthrough library for React apps. Build guided user t
 ```bash
 # npm
 npm install trail-js
+```
 
+## 📘 API Reference
 
 | Property           | Type                                     | Description                        |
 | ------------------ | ---------------------------------------- | ---------------------------------- |
