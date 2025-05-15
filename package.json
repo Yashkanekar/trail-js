@@ -1,8 +1,8 @@
 {
   "name": "trail-js",
   "version": "1.0.0",
-  "description": "A React walkthrough library",
-  "author": "Your Name",
+  "description": "A simple walklthrough library which can be used to guide users through your website",
+  "author": "Yash Kanekar",
   "license": "MIT",
   "type": "module",
   "main": "./dist/index.cjs.js",
