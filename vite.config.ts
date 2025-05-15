@@ -1,7 +1,7 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import path from "path";
-import cssInjectedByJsPlugin from 'vite-plugin-css-injected-by-js';
+import cssInjectedByJsPlugin from "vite-plugin-css-injected-by-js";
 
 // Detect build mode from CLI
 const isLibMode = process.env.BUILD === "lib";
@@ -27,6 +27,7 @@ export default defineConfig({
             },
           },
           cssCodeSplit: false, // Ensure CSS is split into a separate file
+          emptyOutDir: false, // ✅ Add this line
         },
       }
     : {
