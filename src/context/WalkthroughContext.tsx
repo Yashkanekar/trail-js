@@ -63,6 +63,7 @@ export const WalkthroughProvider = ({
   };
 
   const goToStep = (index: number) => {
+    console.log("goToStep", index);
     if (index >= 0 && index < steps.length) {
       setCurrentStepIndex(index);
       setIsActive(true);

@@ -5,7 +5,7 @@ import { type WalkthroughStep } from "../types";
 import "../styles/walkthrough.css";
 
 const Walkthrough = () => {
-  const { steps, currentStepIndex, isActive, next, back, skip } =
+  const { steps, currentStepIndex, isActive, next, back, skip, goToStep } =
     useWalkthroughContext();
 
   const [targetRect, setTargetRect] = useState<DOMRect | null>(null);
@@ -58,7 +58,20 @@ const Walkthrough = () => {
         style={tooltipStyle}
       >
         <div className="tooltip-content">{currentStep.content}</div>
-        <div className="tooltip-buttons">
+        {typeof currentStep.customNavigation === "function" ? (
+          currentStep.customNavigation({ next, back, skip, goToStep })
+        ) : ( 
+          <div className="tooltip-buttons">
+            <button onClick={back} disabled={currentStepIndex === 0}>
+              Back
+            </button>
+            <button onClick={next}>
+              {currentStepIndex === steps.length - 1 ? "Finish" : "Next"}
+            </button>
+            <button onClick={skip}>Skip</button>
+          </div>
+        )}
+        {/* <div className="tooltip-buttons">
           <button onClick={back} disabled={currentStepIndex === 0}>
             Back
           </button>
@@ -66,7 +79,7 @@ const Walkthrough = () => {
             {currentStepIndex === steps.length - 1 ? "Finish" : "Next"}
           </button>
           <button onClick={skip}>Skip</button>
-        </div>
+        </div> */}
       </div>
     </>,
     document.body

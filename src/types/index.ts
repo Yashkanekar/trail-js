@@ -1,10 +1,21 @@
+import type { ReactNode } from "react";
+
 export type Placement = "top" | "bottom" | "left" | "right" | "auto";
 
-export type WalkthroughStep = {
+export interface WalkthroughStep {
   selector: string;
-  content: string | React.ReactNode;
+  content: string;
   placement?: Placement;
-  onNext?: () => void;
-  onBack?: () => void;
+  triggerEvent?: string;
   onEnter?: () => void;
+  onExit?: () => void;
+
+  customNavigation?: (controls: WalkthroughControls) => ReactNode;
+}
+
+export type WalkthroughControls = {
+  next: () => void;
+  back: () => void;
+  skip: () => void;
+  goToStep: (index: number) => void;
 };
