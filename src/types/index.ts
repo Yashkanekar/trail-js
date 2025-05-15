@@ -9,8 +9,9 @@ export interface WalkthroughStep {
   triggerEvent?: string;
   onEnter?: () => void;
   onExit?: () => void;
-
   customNavigation?: (controls: WalkthroughControls) => ReactNode;
+  canGoNext?: () => boolean | Promise<boolean>;
+  beforeNext?: () => void | Promise<void>;
 }
 
 export type WalkthroughControls = {

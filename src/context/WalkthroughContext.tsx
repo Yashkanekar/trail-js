@@ -39,7 +39,18 @@ export const WalkthroughProvider = ({
     setIsActive(true);
   };
 
-  const next = () => {
+  const next = async () => {
+    const currentStep = steps[currentStepIndex];
+
+    if (currentStep.beforeNext) {
+      await currentStep.beforeNext();
+    }
+
+    if (currentStep.canGoNext) {
+      const allowed = await currentStep.canGoNext();
+      if (!allowed) return;
+    }
+
     if (currentStepIndex < steps.length - 1) {
       setCurrentStepIndex((i) => i + 1);
     } else {

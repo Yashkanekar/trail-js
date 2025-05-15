@@ -50,7 +50,7 @@ const Walkthrough = () => {
 
   return createPortal(
     <>
-      <div className="walkthrough-overlay" />
+      <div className="walkthrough-backdrop" />
       <div className="walkthrough-highlight" style={overlayStyle} />
       <div
         className="walkthrough-tooltip"
