@@ -1,6 +1,6 @@
 {
   "name": "trail-js",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "A simple walklthrough library which can be used to guide users through your website",
   "author": "Yash Kanekar",
   "license": "MIT",
