@@ -6,14 +6,15 @@
 
 ## ✨ Features
 
-- Highlight DOM elements with tooltips
-- Supports custom content (jsx support) and navigation
+- Step-by-step guides with DOM element targeting
+- Supports custom content (jsx support)
 - `canGoNext` validations for conditional progression
 - `beforeNext` async hooks for side effects
 - Optional backdrop with focus highlighting
 - Responsive positioning with auto-clamping
-- Scrolls to target elements smoothly
-- Fully customizable styles and UI
+- Smooth scroll to target elements
+- Dynamic tooltips with styling overrides
+
 
 ---
 
@@ -84,16 +85,7 @@ The tooltip and highlight overlay component. Should be placed inside `Walkthroug
 <Walkthrough />
 ```
 
-### `useWalkthrough()`
 
-A custom hook to control the walkthrough programmatically.
-
-```tsx
-const { start, next, back, skip, currentStepIndex, isActive } =
-  useWalkthrough();
-```
-
----
 
 ## 🔁 Step Object (`WalkthroughStep`)
 
@@ -116,7 +108,7 @@ type WalkthroughStep = {
   navButtonClassName?: string;
   navButtonStyle?: React.CSSProperties;
   customNavigation?: (controls: WalkthroughControls) => ReactNode;
-};
+}
 ```
 
 ### `customNavigation` Controls
@@ -129,6 +121,40 @@ type WalkthroughControls = {
   goToStep: (index: number) => void;
 };
 ```
+
+---
+
+<!-- ---
+
+## 🧠 API Reference -->
+
+### `useWalkthrough()`
+
+Main hook to control walkthrough progression.
+
+#### Returns
+
+| Property         | Type                     | Description                                  |
+|------------------|--------------------------|----------------------------------------------|
+| `steps`          | `WalkthroughStep[]`      | All defined steps for the current walkthrough |
+| `currentStepIndex` | `number`                | Index of the current active step              |
+| `isActive`       | `boolean`                | Whether walkthrough is active or not         |
+| `next`           | `() => void`             | Move to the next step                        |
+| `back`           | `() => void`             | Move to the previous step                    |
+| `skip`           | `() => void`             | Skip and end the walkthrough                 |
+| `goToStep`       | `(index: number) => void`| Jump to a specific step                      |
+
+---
+
+
+
+## Use Cases
+
+- User onboarding flows
+- Feature discovery in SaaS apps
+- Interactive documentation
+- Admin dashboards and tutorials
+- Demo mode for products
 
 ---
 
@@ -195,6 +221,8 @@ Or use `tooltipClassName`, `tooltipStyle`, `navButtonClassName`, and `navButtonS
 
 ---
 
+
+
 ## 🧪 Dev / Example
 
 To run the demo locally:
@@ -225,4 +253,4 @@ Contributions, suggestions, and feedback are welcome!
 
 ## 💬 Support
 
-Feel free to [open an issue](https://github.com/your-username/trail-js/issues) or contact via discussions for help or feature requests.
+Feel free to [open an issue](https://github.com/Yashkanekar/trail-js/issues) or contact via discussions for help or feature requests.
