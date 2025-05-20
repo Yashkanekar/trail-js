@@ -15,6 +15,7 @@ export interface WalkthroughStep {
     errorString?: string;
   };
   beforeNext?: () => void | Promise<void>;
+  showBackdrop?: boolean;
 }
 
 export type WalkthroughControls = {

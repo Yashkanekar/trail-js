@@ -20,13 +20,12 @@ const Walkthrough = () => {
   useEffect(() => {
     if (!isActive) return;
 
-    const el = document.querySelector(currentStep.selector);
-
     let isMounted = true;
+
     waitForSelector(currentStep.selector, 5000)
       .then(() => {
-        if (el) {
-          if (!isMounted) return;
+        const el = document.querySelector(currentStep.selector);
+        if (el && isMounted) {
           const rect = el.getBoundingClientRect();
           setTargetRect(rect);
           currentStep.onEnter?.();
@@ -114,7 +113,41 @@ const Walkthrough = () => {
     })(),
   };
 
-  const overlayStyle: React.CSSProperties = {
+  const showBackdrop = currentStep.showBackdrop ?? false;
+
+  const backdropPieces = (() => {
+    const { innerWidth: vw, innerHeight: vh } = window;
+    const { top, left, width, height } = targetRect;
+
+    return [
+      {
+        top: 0,
+        left: 0,
+        width: "100%",
+        height: top + window.scrollY,
+      },
+      {
+        top: top + window.scrollY,
+        left: 0,
+        width: left + window.scrollX,
+        height,
+      },
+      {
+        top: top + window.scrollY,
+        left: left + width + window.scrollX,
+        width: vw - (left + width),
+        height,
+      },
+      {
+        top: top + height + window.scrollY,
+        left: 0,
+        width: "100%",
+        height: vh - (top + height),
+      },
+    ];
+  })();
+
+  const highlightStyle: React.CSSProperties = {
     position: "fixed",
     top: targetRect.top + window.scrollY,
     left: targetRect.left + window.scrollX,
@@ -128,8 +161,21 @@ const Walkthrough = () => {
 
   return createPortal(
     <>
-      <div className="walkthrough-backdrop" />
-      <div className="walkthrough-highlight" style={overlayStyle} />
+      {showBackdrop &&
+        backdropPieces.map((style, i) => (
+          <div
+            key={i}
+            style={{
+              position: "fixed",
+              background: "rgba(0, 0, 0, 0.5)",
+              zIndex: 999,
+              pointerEvents: "none",
+              ...style,
+            }}
+          />
+        ))}
+
+      <div className="walkthrough-highlight" style={highlightStyle} />
 
       <div
         className="walkthrough-tooltip"
