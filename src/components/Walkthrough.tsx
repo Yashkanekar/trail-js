@@ -58,46 +58,59 @@ const Walkthrough = () => {
       const spacing = 10;
       const scrollY = window.scrollY;
       const scrollX = window.scrollX;
+      let top = 0;
+      let left = 0;
 
       switch (placement) {
         case "top":
-          return {
-            top: targetRect.top + scrollY - tooltipSize.height - spacing,
-            left:
-              targetRect.left +
-              scrollX +
-              targetRect.width / 2 -
-              tooltipSize.width / 2,
-          };
+          top = targetRect.top + scrollY - tooltipSize.height - spacing;
+          left =
+            targetRect.left +
+            scrollX +
+            targetRect.width / 2 -
+            tooltipSize.width / 2;
+          break;
         case "left":
-          return {
-            top:
-              targetRect.top +
-              scrollY +
-              targetRect.height / 2 -
-              tooltipSize.height / 2,
-            left: targetRect.left + scrollX - tooltipSize.width - spacing,
-          };
+          top =
+            targetRect.top +
+            scrollY +
+            targetRect.height / 2 -
+            tooltipSize.height / 2;
+          left = targetRect.left + scrollX - tooltipSize.width - spacing;
+          break;
         case "right":
-          return {
-            top:
-              targetRect.top +
-              scrollY +
-              targetRect.height / 2 -
-              tooltipSize.height / 2,
-            left: targetRect.left + scrollX + targetRect.width + spacing,
-          };
+          top =
+            targetRect.top +
+            scrollY +
+            targetRect.height / 2 -
+            tooltipSize.height / 2;
+          left = targetRect.left + scrollX + targetRect.width + spacing;
+          break;
         case "bottom":
         default:
-          return {
-            top: targetRect.top + scrollY + targetRect.height + spacing,
-            left:
-              targetRect.left +
-              scrollX +
-              targetRect.width / 2 -
-              tooltipSize.width / 2,
-          };
+          top = targetRect.top + scrollY + targetRect.height + spacing;
+          left =
+            targetRect.left +
+            scrollX +
+            targetRect.width / 2 -
+            tooltipSize.width / 2;
+          break;
       }
+
+      // Clamp to keep within viewport
+      const clampedLeft = Math.max(
+        spacing,
+        Math.min(left, window.innerWidth - tooltipSize.width - spacing)
+      );
+      const clampedTop = Math.max(
+        spacing,
+        Math.min(top, window.innerHeight - tooltipSize.height - spacing)
+      );
+
+      return {
+        top: clampedTop,
+        left: clampedLeft,
+      };
     })(),
   };
 
@@ -138,7 +151,7 @@ const Walkthrough = () => {
           </div>
         )}
       </div>
-      <Toaster/>
+      <Toaster />
     </>,
     document.body
   );
