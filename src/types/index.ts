@@ -4,7 +4,7 @@ export type Placement = "top" | "bottom" | "left" | "right" | "auto";
 
 export interface WalkthroughStep {
   selector: string;
-  content: string;
+  content: string | ReactNode;
   placement?: "top" | "bottom" | "left" | "right" | "auto";
   triggerEvent?: string;
   onEnter?: () => void;
@@ -16,6 +16,11 @@ export interface WalkthroughStep {
   };
   beforeNext?: () => void | Promise<void>;
   showBackdrop?: boolean;
+  tooltipClassName?: string;
+  tooltipStyle?: React.CSSProperties;
+
+  navButtonClassName?: string;
+  navButtonStyle?: React.CSSProperties;
 }
 
 export type WalkthroughControls = {

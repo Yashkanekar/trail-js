@@ -178,22 +178,43 @@ const Walkthrough = () => {
       <div className="walkthrough-highlight" style={highlightStyle} />
 
       <div
-        className="walkthrough-tooltip"
+        className={`walkthrough-tooltip ${currentStep.tooltipClassName ?? ""}`}
         ref={tooltipRef}
-        style={tooltipStyle}
+        style={{ ...tooltipStyle, ...currentStep.tooltipStyle }}
       >
-        <div className="tooltip-content">{currentStep.content}</div>
+        <div className="tooltip-content">
+          {typeof currentStep.content === "string" ? (
+            <p>{currentStep.content}</p>
+          ) : (
+            currentStep.content
+          )}
+        </div>
         {typeof currentStep.customNavigation === "function" ? (
           currentStep.customNavigation({ next, back, skip, goToStep })
         ) : (
           <div className="tooltip-buttons">
-            <button onClick={back} disabled={currentStepIndex === 0}>
+            <button
+              onClick={back}
+              disabled={currentStepIndex === 0}
+              className={currentStep.navButtonClassName}
+              style={currentStep.navButtonStyle}
+            >
               Back
             </button>
-            <button onClick={next}>
+            <button
+              onClick={next}
+              className={currentStep.navButtonClassName}
+              style={currentStep.navButtonStyle}
+            >
               {currentStepIndex === steps.length - 1 ? "Finish" : "Next"}
             </button>
-            <button onClick={skip}>Skip</button>
+            <button
+              onClick={skip}
+              className={currentStep.navButtonClassName}
+              style={currentStep.navButtonStyle}
+            >
+              Skip
+            </button>
           </div>
         )}
       </div>

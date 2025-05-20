@@ -31,17 +31,4 @@
   background: rgba(0, 0, 0, 0.5);
   z-index: 999;
   pointer-events: none;
-  clip-path: polygon(
-    0 0,
-    100% 0,
-    100% 100%,
-    0 100%,
-    0 0,
-    var(--target-left) var(--target-top),
-    calc(var(--target-left) + var(--target-width)) var(--target-top),
-    calc(var(--target-left) + var(--target-width))
-      calc(var(--target-top) + var(--target-height)),
-    var(--target-left) calc(var(--target-top) + var(--target-height)),
-    var(--target-left) var(--target-top)
-  );
 }

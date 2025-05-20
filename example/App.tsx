@@ -4,27 +4,41 @@ import {
   useWalkthrough,
   type WalkthroughStep,
 } from "../src";
+import "./App.css";
 
 const steps: WalkthroughStep[] = [
   {
     selector: "#step-one",
     content: "Click here to start the walkthrough",
     placement: "bottom",
+    customNavigation: ({ next, skip }) => (
+      <div>
+        <button className="custom-next" onClick={next}>
+          👉 Continue
+        </button>
+        <button className="custom-skip" onClick={skip}>
+          ❌ Skip
+        </button>
+      </div>
+    ),
   },
   {
     selector: "#step-two",
-    content: "Enter your name here. This input is required before proceeding.",
+    content: (
+      <div>
+        <h3>Please enter your name</h3>
+        <p>This input is required before continuing.</p>
+      </div>
+    ),
     placement: "top",
+    tooltipClassName: "custom-tooltip",
+    tooltipStyle: { backgroundColor: "#ffeeba", color: "#333" },
     canGoNext: {
       validate: () => {
         const val = document.getElementById("step-two")?.value;
-        if (!val) {
-          // toast.error("Name is required to continue!");
-          return false;
-        }
-        return true;
+        return !!val;
       },
-      errorString: "Name is required to continue!",
+      errorString: "Name is required!",
     },
   },
   {
@@ -34,6 +48,7 @@ const steps: WalkthroughStep[] = [
     onEnter: () => {
       console.log("We're now highlighting the submit button!");
     },
+    // navButtonClassName: "fancy-button",
   },
   {
     selector: "h1",
@@ -46,6 +61,13 @@ const steps: WalkthroughStep[] = [
         <button onClick={skip}>❌ Skip</button>
       </div>
     ),
+
+    navButtonStyle: {
+      backgroundColor: "#007bff",
+      color: "white",
+      borderRadius: "5px",
+      padding: "0.5rem 1rem",
+    },
   },
 ];
 const Controls = () => {
