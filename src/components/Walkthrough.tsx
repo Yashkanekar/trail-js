@@ -113,7 +113,7 @@ const Walkthrough = () => {
     })(),
   };
 
-  const showBackdrop = currentStep.showBackdrop ?? false;
+  const showBackdrop = currentStep.showBackdrop ?? true;
 
   const backdropPieces = (() => {
     const { innerWidth: vw, innerHeight: vh } = window;
@@ -153,9 +153,7 @@ const Walkthrough = () => {
     left: targetRect.left + window.scrollX,
     width: targetRect.width,
     height: targetRect.height,
-    border: "2px solid #00f",
     borderRadius: "4px",
-    zIndex: 1001,
     pointerEvents: "none",
   };
 
