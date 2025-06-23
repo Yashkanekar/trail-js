@@ -3,6 +3,6 @@
   "references": [
     { "path": "./tsconfig.app.json" },
     { "path": "./tsconfig.node.json" },
-    { "path": "./tsconfig.build.json" } // ← NEW: add a reference to build config
+    { "path": "./tsconfig.build.json" } // add a reference to build config
   ]
 }

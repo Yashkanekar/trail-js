@@ -40,6 +40,7 @@ const steps: WalkthroughStep[] = [
       },
       errorString: "Name is required!",
     },
+    showBackdrop: true,
   },
   {
     selector: "#step-three",
