@@ -1,7 +1,7 @@
 {
   "name": "trail-js",
-  "version": "2.0.0",
-  "description": "A simple walklthrough library which can be used to guide users through your website",
+  "version": "2.0.1",
+  "description": "A simple and highly customizable walkthrough library which can be used in your react apps to guide users through your website",
   "author": "Yash Kanekar",
   "license": "MIT",
   "type": "module",
@@ -63,5 +63,23 @@
   },
   "dependencies": {
     "react-hot-toast": "^2.5.2"
-  }
+  },
+  "keywords": [
+    "walkthrough",
+    "tour",
+    "react",
+    "onboarding",
+    "react library",
+    "product tour",
+    "react tour",
+    "user guide",
+    "react onboarding",
+    "ui walkthrough",
+    "guided tour",
+    "react tutorial",
+    "react walkthrough",
+    "step-by-step guide",
+    "react overlay",
+    "trail-js"
+  ]
 }
