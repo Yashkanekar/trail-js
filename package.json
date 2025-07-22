@@ -1,6 +1,6 @@
 {
   "name": "trail-js",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "A simple and highly customizable walkthrough library which can be used in your react apps to guide users through your website",
   "author": "Yash Kanekar",
   "license": "MIT",
